@@ -25,3 +25,13 @@ export const addNewWine = (wine: Wine): Promise<Response> => {
     body: JSON.stringify({ wine }),
   });
 };
+
+export const getPairingsForWine = (wine: Wine): Promise<Response> => {
+  return fetch('http://localhost:3000/getPairingsForWine', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ wine }),
+  });
+};

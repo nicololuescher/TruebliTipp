@@ -7,145 +7,56 @@ import {
   Box,
 } from '@mui/material';
 import WineBarIcon from '@mui/icons-material/WineBar';
+import Add from '@mui/icons-material/Add';
 import { Wine } from '../model/Wine';
+import Fab from '@mui/material/Fab';
 import { useNavigate } from 'react-router-dom';
+import { wineStore } from '../../store/WineStore';
+import { getAllWines } from '../api/api';
+import React from 'react';
+import { observer } from 'mobx-react';
 
 
-export const PairingWineToFood = () => {    
+export const PairingWineToFood = observer(() => {    
   const navigate = useNavigate();
-
-  function search(e) {
-
-  }
   
-  const wines: Wine[] = [
-    {
-      id: 1,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 2,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 3,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 4,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 5,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 6,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 7,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 8,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-    {
-      id: 9,
-      name: 'Cabernet Sauvignon',
-      year: 2018,
-      country: 'Swiss',
-      region: 'Valais',
-      used: false,
-      description: 'nice',
-      feedback: 5,
-      grapes: 'idk',
-      price: 12.5,
-      tags: 'nice',
-      type: 'Red',
-    },
-  ];
+  React.useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await getAllWines();
+
+        if (!response.ok) {
+          console.log('Error getting wines');
+          return;
+        }
+        const data: Wine[] = await response.json();
+
+        wineStore.setWines(data);
+      } catch (error) {
+        console.log('Error getting wines ', error);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  if (!wineStore.wines.length) {
+    return (
+      <>
+        <Typography align="center" variant="h4">
+          No wines added yet
+        </Typography>
+        <Fab
+          color="primary"
+          aria-label="add"
+          sx={{ position: 'fixed', right: '20px', bottom: '70px' }}
+          onClick={() => navigate('/addWine')}
+        >
+          <Add />
+        </Fab>
+      </>
+    );
+  }
 
   return (
       <div>
@@ -159,7 +70,7 @@ export const PairingWineToFood = () => {
       }}
     >
       <Grid container spacing={2}>
-        {wines.map((wine, index) => (
+        {wineStore.wines.map((wine, index) => (
           <Grid
             item
             xs={12}
@@ -197,7 +108,7 @@ export const PairingWineToFood = () => {
       </div>
   
     )
-  }
+  })
   
 
   

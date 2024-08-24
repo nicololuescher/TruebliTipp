@@ -13,24 +13,51 @@ import {
 import { useParams } from 'react-router-dom';
 import { wineStore } from '../../store/WineStore';
 import { Wine } from '../model/Wine';
-
+import { getPairingsForWine } from '../api/api';
 import redWineImage from '../assets/redWine.jpg'; // Adjust the relative path
 import whiteWineImage from '../assets/whiteWine.jpg'; // Adjust the relative path
 import { SuggestedPairingWineToFood } from '../model/SuggestedPairingWineToFood';
+import React from 'react';
+import { useState } from 'react';
 
 export const PairingFoodSuggestion = () => {
     const { id } = useParams<{ id: string }>() as { id: string }; // Get the wine ID from the URL
     const wineId = parseInt(id, 10); // Convert the ID to a number
     const wine: Wine | undefined = wineStore.getWineById(wineId);
 
+    const [suggestion, setSuggestion] = useState({} as SuggestedPairingWineToFood);
+
     if (!wine) {
         return <div>Wine not found</div>;
     }
 
-    const suggestion = getSuggestion(wineId);
+    React.useEffect(() => {
+        getSuggestion(wine);
+    }, []);
 
     const drink = () => {
-        console.log('drink ', wine.id);
+        if (wine.id) {
+            wineStore.removeWine(wine.id);
+        }
+    };
+
+    const getSuggestion = (wine: Wine) => {
+        getPairingsForWine(wine).then(response => {
+            try {
+
+                if (!response.ok) {
+                    console.log('Error getting pairings');
+                    return;
+                }
+                response.text()
+                    .then(dataJson => {
+                        setSuggestion(JSON.parse(dataJson.replace(/(?:(?=\s\w)\s)/g, '_')))
+                    });
+
+            } catch (error) {
+                console.log('Error getting wines ', error);
+            }
+        });
     };
 
     return (
@@ -106,42 +133,27 @@ export const PairingFoodSuggestion = () => {
             </Box>
         </Container>
     );
+
 }
 
-//Dummy Data for now
-function getSuggestion(id: Number)
-{
-    return JSON.parse(`{
-        "pairings": {
-            "red_meat": [
-                "grilled steak",
-                "roast lamb",
-                "beef stew"
-            ],
-            "cheese": [
-                "cheddar",
-                "gouda",
-                "gruyere"
-            ],
-            "pasta": [
-                "pasta with bolognese",
-                "lasagna",
-                "ravioli"
-            ]
-        }
-    }`.replace(/(?:(?=\s\w)\s)/g,'_'));
-}
+const FoodSuggestionTableBody = (foodCategories: SuggestedPairingWineToFood) => {
+    if (Object.keys(foodCategories).length === 0) {
+        return (
+            <TableBody>
 
-const FoodSuggestionTableBody = (foodCategory: SuggestedPairingWineToFood) => {
+            </TableBody>
+        );
+    }
+
     return (
         <TableBody>
-            {Object.keys(foodCategory.pairings).map(function (categoryName) {
+            {Object.keys(foodCategories.pairings).map(function (categoryName) {
                 return (
                     <TableRow>
                         <TableCell variant="head">{categoryName}</TableCell>
-                        {foodCategory.pairings[categoryName].map((categoryValues) => (
+                        {foodCategories.pairings[categoryName].map((categoryValues) => (
                             <TableCell>{categoryValues.replace(/_/g, ' ')}</TableCell>
-                        ))}                
+                        ))}
                     </TableRow>
                 )
             })}
