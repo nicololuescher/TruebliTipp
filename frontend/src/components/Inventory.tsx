@@ -12,8 +12,11 @@ import { Wine } from '../model/Wine';
 import Fab from '@mui/material/Fab';
 import { useNavigate } from 'react-router-dom';
 import { wineStore } from '../../store/WineStore';
+import { getAllWines } from '../api/api';
+import React from 'react';
+import { observer } from 'mobx-react';
 
-export const Inventory = () => {
+export const Inventory = observer(() => {
   const navigate = useNavigate();
 
   /*  const wines: Wine[] = [
@@ -144,9 +147,27 @@ export const Inventory = () => {
       type: 'Red',
     },
   ]; */
-  const wines: Wine[] = wineStore.allWines;
+  React.useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await getAllWines();
 
-  if (!wines.length) {
+        if (!response.ok) {
+          console.log('Error getting wines');
+          return;
+        }
+        const data: Wine[] = await response.json();
+
+        wineStore.setWines(data);
+      } catch (error) {
+        console.log('Error getting wines ', error);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  if (!wineStore.wines.length) {
     return (
       <>
         <Typography align="center" variant="h4">
@@ -183,7 +204,7 @@ export const Inventory = () => {
         <Add />
       </Fab>
       <Grid container spacing={2}>
-        {wines.map((wine, index) => (
+        {wineStore.wines.map((wine, index) => (
           <Grid
             item
             xs={12}
@@ -217,4 +238,4 @@ export const Inventory = () => {
       </Grid>
     </Container>
   );
-};
+});

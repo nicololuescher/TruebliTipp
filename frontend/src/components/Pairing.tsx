@@ -10,7 +10,7 @@ export const Pairing = () => {
 
   const handleModeChanged = (event, value) => {
     setFindWineMode(value);
-  }
+  };
 
   return (
     <Container
@@ -22,24 +22,16 @@ export const Pairing = () => {
     >
       <Grid container spacing={2} paddingTop={'60px'} paddingBottom={'60px'}>
         <Grid item xs={12} key={0}>
-
-          <Box
-            display="flex"
-            alignItems="start"
-            justifyContent="center"
-          >
+          <Box display="flex" alignItems="start" justifyContent="center">
             <ToggleFoodWineMode onChange={handleModeChanged} sx={{ m: 1 }} />
           </Box>
         </Grid>
       </Grid>
 
-      {isFindWineMode ? <PairingWineToFood/> : <PairingFoodToWine/>}
-
-
+      {isFindWineMode ? <PairingWineToFood /> : <PairingFoodToWine />}
     </Container>
   );
-}
-
+};
 
 const ToggleFoodWineMode = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -54,7 +46,7 @@ const ToggleFoodWineMode = styled(Switch)(({ theme }) => ({
       transform: 'translateX(22px)',
       '& .MuiSwitch-thumb:before': {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          '#fff',
+          '#fff'
         )}" d="M6 3v6c0 2.97 2.16 5.43 5 5.91V19H8v2h8v-2h-3v-4.09c2.84-.48 5-2.94 5-5.91V3zm10 5H8V5h8z"/></svg>')`,
       },
       '& + .MuiSwitch-track': {
@@ -77,7 +69,7 @@ const ToggleFoodWineMode = styled(Switch)(({ theme }) => ({
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
       backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-        '#fff',
+        '#fff'
       )}" d="m8.1 13.34 2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13z"/></svg>')`,
     },
   },

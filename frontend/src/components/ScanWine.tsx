@@ -1,13 +1,20 @@
-import { Container, Fab } from '@mui/material';
+import { Box, CircularProgress, Container, Fab } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { getInfoFromLabel } from '../api/api';
+import { Wine } from '../model/Wine';
+import { copiedWineStore } from '../../store/CopiedWine';
+import { useNavigate } from 'react-router-dom';
 
 export const ScanWine: React.FC = () => {
   const webcamRef = useRef<Webcam>(null);
   const [image, setImage] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const capture = () => {
     const imageSrc = webcamRef.current?.getScreenshot();
@@ -16,9 +23,36 @@ export const ScanWine: React.FC = () => {
     }
   };
 
-  const sendImages = () => {
-    console.log('send');
+  const sendImage = () => {
+    const loadData = async () => {
+      try {
+        const response = await getInfoFromLabel(image);
+
+        if (!response.ok) {
+          console.log('Error getting label');
+          return;
+        }
+        const data: Wine = await response.json();
+
+        copiedWineStore.setCopiedWine(data);
+      } catch (error) {
+        console.log('Error getting label ', error);
+      } finally {
+        setLoading(false);
+        navigate('/addWine');
+      }
+    };
+
+    loadData();
   };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Container
@@ -63,7 +97,7 @@ export const ScanWine: React.FC = () => {
           <Fab onClick={capture}>
             <RadioButtonCheckedIcon />
           </Fab>
-          <Fab onClick={sendImages} disabled={!image}>
+          <Fab onClick={sendImage} disabled={!image}>
             <AnalyticsIcon />
           </Fab>
           <Fab onClick={() => setImage('')} disabled={!image}>
