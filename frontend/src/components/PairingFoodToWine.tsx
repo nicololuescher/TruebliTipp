@@ -12,7 +12,7 @@ interface FoodType {
 export const PairingFoodToWine = () => {
     const foodType: FoodType[] = [
       {
-        name: 'Meet',
+        name: 'Meat',
         childNode: [
           {
             name: 'Pork',

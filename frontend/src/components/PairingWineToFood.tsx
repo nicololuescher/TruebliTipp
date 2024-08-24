@@ -30,7 +30,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -44,7 +44,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -58,7 +58,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -72,7 +72,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -86,7 +86,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -100,7 +100,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -114,7 +114,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -128,7 +128,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -142,7 +142,7 @@ export const PairingWineToFood = () => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
   ];

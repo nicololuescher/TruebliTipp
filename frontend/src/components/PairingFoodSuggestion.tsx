@@ -129,7 +129,7 @@ function getSuggestion(id: Number)
                 "ravioli"
             ]
         }
-    }`);
+    }`.replace(/(?:(?=\s\w)\s)/g,'_'));
 }
 
 const FoodSuggestionTableBody = (foodCategory: SuggestedPairingWineToFood) => {
@@ -140,7 +140,7 @@ const FoodSuggestionTableBody = (foodCategory: SuggestedPairingWineToFood) => {
                     <TableRow>
                         <TableCell variant="head">{categoryName}</TableCell>
                         {foodCategory.pairings[categoryName].map((categoryValues) => (
-                            <TableCell>{categoryValues}</TableCell>
+                            <TableCell>{categoryValues.replace(/_/g, ' ')}</TableCell>
                         ))}                
                     </TableRow>
                 )
