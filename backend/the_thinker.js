@@ -41,7 +41,6 @@ async function getPairingsForWine(description) {
             },
         ],
     });
-
     const result = await chatSession.sendMessage(description);
 
     return result.response.text();
@@ -77,7 +76,7 @@ async function getTextFromImage(image) {
         history=[]
       )
 
-    const [result] = await visionClient.textDetection(image);
+    const [result] = await visionClient.textDetection({image: { content: image }});
     detectedText = result.fullTextAnnotation.text
 
     const instructions = {
