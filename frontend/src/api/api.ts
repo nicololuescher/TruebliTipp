@@ -35,3 +35,13 @@ export const getPairingsForWine = (wine: Wine): Promise<Response> => {
     body: JSON.stringify({ wine }),
   });
 };
+
+export const getPairingsForFood = (food: string, wines: Wine[]): Promise<Response> => {
+  return fetch('http://localhost:3000/getPairingsForFood', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ wines, food }),
+  });
+};
