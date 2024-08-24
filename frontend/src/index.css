@@ -78,3 +78,40 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+body {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    151deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(6, 0, 1, 1) 60%,
+    rgba(31, 0, 6, 1) 100%
+  );
+  height: auto;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.glass {
+  /* CSS for Glass UI, play with it for better or more suitable results */
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  background-color: rgba(50, 50, 50, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.2);
+  /* <div> size */
+  /* Make nice text */
+  vertical-align: middle;
+  line-height: 300px;
+  font-family: helvetica;
+  color: lightgray;
+  font-size: 40px;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+div > .glass:hover {
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  background-color: rgba(255, 255, 255, 0.4);
+}

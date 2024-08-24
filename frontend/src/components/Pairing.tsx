@@ -8,7 +8,7 @@ import { PairingWineToFood } from './PairingWineToFood';
 export const Pairing = () => {
   const [isFindWineMode, setFindWineMode] = useState(Boolean);
 
-  const handleModeChanged = (event, value) => {
+  const handleModeChanged = (_event, value) => {
     setFindWineMode(value);
   };
 
@@ -20,7 +20,7 @@ export const Pairing = () => {
         overflow: 'auto',
       }}
     >
-      <Grid container spacing={2} paddingTop={'60px'} paddingBottom={'60px'}>
+      <Grid container paddingTop={'20px'} paddingBottom={'20px'}>
         <Grid item xs={12} key={0}>
           <Box display="flex" alignItems="start" justifyContent="center">
             <ToggleFoodWineMode onChange={handleModeChanged} sx={{ m: 1 }} />

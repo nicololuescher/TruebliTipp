@@ -84,7 +84,7 @@ export const Inventory = observer(() => {
             onClick={() => navigate(`/wine/${wine.id}`)}
           >
             <Card>
-              <CardContent>
+              <CardContent className="glass">
                 <Box
                   display="flex"
                   alignItems="center"

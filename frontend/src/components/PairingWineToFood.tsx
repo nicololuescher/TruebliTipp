@@ -16,10 +16,9 @@ import { getAllWines } from '../api/api';
 import React from 'react';
 import { observer } from 'mobx-react';
 
-
-export const PairingWineToFood = observer(() => {    
+export const PairingWineToFood = observer(() => {
   const navigate = useNavigate();
-  
+
   React.useEffect(() => {
     const loadData = async () => {
       try {
@@ -59,56 +58,50 @@ export const PairingWineToFood = observer(() => {
   }
 
   return (
-      <div>
-    <Container
-      maxWidth="sm"
-      sx={{
-        maxHeight: '100dvh',
-        overflow: 'auto',
-        paddingTop: '60px',
-        paddingBottom: '60px',
-      }}
-    >
-      <Grid container spacing={2}>
-        {wineStore.wines.map((wine, index) => (
-          <Grid
-            item
-            xs={12}
-            key={index}
-            onClick={() => navigate(`/wineSuggestFood/${wine.id}`)}
-          >
-            <Card>
-              <CardContent>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Box display="flex" alignItems="center">
-                    <WineBarIcon sx={{ marginRight: 2 }} />
-                    <Box>
-                      <Typography variant="h6">{wine.name}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Year: {wine.year}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Price: {wine.price} CHF
-                      </Typography>
+    <div>
+      <Container
+        maxWidth="sm"
+        sx={{
+          maxHeight: '100dvh',
+          overflow: 'auto',
+          paddingTop: '20px',
+          paddingBottom: '20px',
+        }}
+      >
+        <Grid container spacing={2}>
+          {wineStore.wines.map((wine, index) => (
+            <Grid
+              item
+              xs={12}
+              key={index}
+              onClick={() => navigate(`/wineSuggestFood/${wine.id}`)}
+            >
+              <Card>
+                <CardContent>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Box display="flex" alignItems="center">
+                      <WineBarIcon sx={{ marginRight: 2 }} />
+                      <Box>
+                        <Typography variant="h6">{wine.name}</Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Year: {wine.year}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Price: {wine.price} CHF
+                        </Typography>
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-
-
-      </div>
-  
-    )
-  })
-  
-
-  
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </div>
+  );
+});

@@ -15,6 +15,7 @@ import { ScanWine } from './components/ScanWine';
 import { WineDetail } from './components/WineDetail';
 import { getAllWines } from './api/api';
 import { PairingFoodSuggestion } from './components/PairingFoodSuggestion';
+import { ScanCard } from './components/ScanCard';
 
 const darkTheme = createTheme({
   palette: {
@@ -40,6 +41,7 @@ const App: React.FC = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/addWine" element={<AddWine />} />
           <Route path="/scanWine" element={<ScanWine />} />
+          <Route path="/scanCard" element={<ScanCard />} />
           <Route path="/wine/:id" element={<WineDetail />} />
           <Route
             path="/wineSuggestFood/:id"

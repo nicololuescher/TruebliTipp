@@ -1,6 +1,5 @@
 import { Box, Card, CardContent, Container, Typography } from '@mui/material';
 import React from 'react';
-import { Divider } from '@mui/material';
 import { getSommelier } from '../api/api';
 import { SommelierQuestion } from '../model/SommelierQuestion';
 
@@ -72,6 +71,7 @@ export const Sommelier = () => {
         {!question.recommendation &&
           question?.options.map((answer) => (
             <Card
+              className="glass"
               onClick={() => setNextStep(answer.next)}
               sx={{ margin: '10px 0px' }}
             >

@@ -45,12 +45,25 @@ export const getSommelier = (step: string): Promise<Response> => {
   });
 };
 
-export const getPairingsForFood = (food: string, wines: Wine[]): Promise<Response> => {
+export const getPairingsForFood = (
+  food: string,
+  wines: Wine[]
+): Promise<Response> => {
   return fetch('http://localhost:3000/getPairingsForFood', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ wines, food }),
+  });
+};
+
+export const analyseMenu = (images: string[]): Promise<Response> => {
+  return fetch('http://localhost:3000/postAnalyseMenu', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ images: [...images] }),
   });
 };
