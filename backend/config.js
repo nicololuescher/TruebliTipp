@@ -1,4 +1,5 @@
 var config = {
+    // database connection configuration
     pool: {
         user: process.env.POSTGRES_USER,
         host: process.env.POSTGRES_HOST,
@@ -6,6 +7,7 @@ var config = {
         password: process.env.POSTGRES_PASSWORD,
         port: 5432
     },
+    // gemini API configuration
     gemini: {
         getInfoFromLabel: {
             instruction: "Extract standardized information from a wine label text.",

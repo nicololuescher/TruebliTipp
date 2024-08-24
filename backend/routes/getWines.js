@@ -5,6 +5,7 @@ const config = require('../config');
 
 const pool = new Pool(config.pool);
 
+// get all wines in inventory
 router.get('/getWines', (req, res) => {
     pool.query('SELECT * FROM wines', (error, results) => {
         if (error) {

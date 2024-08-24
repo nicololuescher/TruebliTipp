@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sommelierAPI = require('../res/sommelier');
 
+// sommelier questionaire
 router.get('/getSommelier', (req, res) => {
     step = req.query.step;
 

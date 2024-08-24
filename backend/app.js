@@ -11,6 +11,7 @@ const getSommelier = require('./routes/getSommelier');
 
 const app = express();
 
+// disable CORS
 const corsOptions = {
   credentials: true,
   origin: true,
@@ -20,6 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
+// increase request size limit to upload images
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
