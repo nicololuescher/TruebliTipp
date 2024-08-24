@@ -26,6 +26,7 @@ async function makeGeminiRequest(instructions, input){
     const result = await chatSession.sendMessage(JSON.stringify(instructions) + "\n" + input);
 
     try {
+        // remove the code block markdown from the response
         return JSON.parse(result.response.text().replace("```json", "").replace("```", ""));
     } catch (error) {
         return result.response.text();

@@ -1,3 +1,4 @@
+// static data for the sommelier API. might be replaced with a real API in the future
 const sommelierAPI = {
     start: {
         question: "What type of wine are you in the mood for?",

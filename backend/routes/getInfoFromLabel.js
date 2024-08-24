@@ -3,6 +3,7 @@ const { extractTextFromImage } = require('../helpers/visionAdapter');
 const { makeGeminiRequest } = require('../helpers/geminiAdapter');
 const config = require('../config');
 
+// process image of a label and return information about the wine
 router.post('/getInfoFromLabel', (req, res) => {
     extractTextFromImage(req.body.image).then((image) => {
         makeGeminiRequest(config.gemini.getInfoFromLabel, image).then((result) => {

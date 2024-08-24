@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./db/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/seed.sql # Seed data
     networks:
       - backend
   node:
@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     container_name: node
     ports:
-      - 3000:3000
+      - 3000:80
     env_file:
       - .env
     depends_on:
