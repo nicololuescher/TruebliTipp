@@ -1,5 +1,5 @@
 const express = require('express');
-const { OAuth2Client } = require('google-auth-library');
+const bodyParser = require('body-parser');
 const Pool = require('pg').Pool;
 const { getPairingsForWine, getPairingsForFood, getTextFromImage } = require('./the_thinker');
 
@@ -12,18 +12,9 @@ const pool = new Pool({
 })
 
 const app = express();
-const client = new OAuth2Client('YOUR_GOOGLE_CLIENT_ID');
 
-app.use(express.json());
-
-const verifyToken = async (token) => {
-    const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: 'YOUR_GOOGLE_CLIENT_ID', // Specify the CLIENT_ID of the app that accesses the backend
-    });
-    const payload = ticket.getPayload();
-    return payload;
-};
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 app.get('/', (req, res) => {
     pool.query('SELECT * FROM users', (error, results) => {
@@ -35,20 +26,42 @@ app.get('/', (req, res) => {
 })
 
 app.get('/getWines', (req, res) => {
-    user = req.query.user;
-
+    pool.query('SELECT * FROM wines', (error, results) => {
+        if (error) {
+            throw error;
+        }
+        res.status(200).json(results.rows);
+    });
 });
 
-app.post('/auth/google', async (req, res) => {
-    const { token } = req.body;
+app.get('/getPairingsForWine', (req, res) => {
+    getPairingsForWine(JSON.stringify(req.body)).then(pairings => {
+        pairings.replace("```json\n", "").replace("```", "");
+        try {
+            responseData = JSON.parse(pairings);
+        }
+        catch (error) {
+            responseData = null;
+        }
+        res.status(200).json(responseData);
+    });
+});
 
-    try {
-        const user = await verifyToken(token);
-        // Here you can create a session or generate a JWT for the user
-        res.status(200).json({ success: true, user });
-    } catch (error) {
-        res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
+app.get('/getPairingsForFood', (req, res) => {
+    const { food, wines } = req.body;
+    getPairingsForFood(food, wines).then(order => {
+        res.status(200).json(JSON.parse(order));
+    });
+});
+
+app.post('/getTextFromImage', (req, res) => {
+    const { base64image } = req.body;
+    console.log(base64image);
+    let image = base64image.replace(/^data:image\/\w+;base64,/, '');
+    getTextFromImage(image).then(text => {
+        text = text.replace("```json", "").replace("```", "");
+        res.status(200).json(JSON.parse(text));
+    });   
 });
 
 app.listen(3000, () => {
@@ -65,4 +78,3 @@ wines = [
 "6|Cabernet Sauvignon|Cabernet Sauvignon|France|Bordeaux|Bold and full-bodied with flavors of black currant, cedar, and tobacco|Full-Bodied, Tannic, Age-worthy",
 ]
 getPairingsForFood("fresh green salad", wines).then(console.log);
-getTextFromImage("./wine_label3.jpg").then(console.log);
