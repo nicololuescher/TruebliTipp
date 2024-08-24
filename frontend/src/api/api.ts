@@ -22,7 +22,7 @@ export const addNewWine = (wine: Wine): Promise<Response> => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ wine }),
+    body: JSON.stringify({ ...wine }),
   });
 };
 
@@ -33,5 +33,14 @@ export const getPairingsForWine = (wine: Wine): Promise<Response> => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ wine }),
+  });
+};
+
+export const getSommelier = (step: string): Promise<Response> => {
+  return fetch(`http://localhost:3000${step}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 };

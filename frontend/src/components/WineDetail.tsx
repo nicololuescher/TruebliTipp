@@ -106,7 +106,7 @@ export const WineDetail = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Price</TableCell>
-                  <TableCell>{wine.price}</TableCell>
+                  <TableCell>{wine.price ? wine.price : '-'}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Country</TableCell>
@@ -118,7 +118,9 @@ export const WineDetail = () => {
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Personal Rating</TableCell>
-                  <TableCell>{wine.feedback}/5</TableCell>
+                  <TableCell>
+                    {wine.feedback ? wine.feedback : '-'} / 5
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>

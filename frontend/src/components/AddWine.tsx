@@ -14,8 +14,9 @@ import { useNavigate } from 'react-router-dom';
 import { copiedWineStore } from '../../store/CopiedWine';
 import { Wine } from '../model/Wine';
 import { addNewWine } from '../api/api';
+import { observer } from 'mobx-react';
 
-export const AddWine = () => {
+export const AddWine = observer(() => {
   const [name, setName] = React.useState('');
   const [year, setYear] = React.useState(new Date().getFullYear());
   const [type, setType] = React.useState('Red');
@@ -33,20 +34,20 @@ export const AddWine = () => {
 
     if (copiedWine.name) {
       const wine: Wine = {
-        name,
-        year,
-        type: type === 'White' ? 'White' : 'Red',
-        grapes,
-        country,
-        region,
-        description,
-        tags,
-        price,
+        name: copiedWine.name,
+        year: copiedWine.year,
+        type: copiedWine.type === 'White' ? 'White' : 'Red',
+        grapes: copiedWine.grapes,
+        country: copiedWine.country,
+        region: copiedWine.region,
+        description: copiedWine.description,
+        tags: copiedWine.tags,
+        price: copiedWine.price,
       };
 
       setName(wine.name);
       setYear(wine.year);
-      setType(wine.grapes);
+      setType(wine.type);
       setGrapes(wine.grapes);
       setCountry(wine.country);
       setRegion(wine.region);
@@ -54,7 +55,7 @@ export const AddWine = () => {
       setTags(wine.tags);
       setPrice(wine.price);
     }
-  }, [country, description, grapes, name, price, region, tags, type, year]);
+  }, []);
 
   const saveWine = () => {
     const wine: Wine = {
@@ -71,12 +72,6 @@ export const AddWine = () => {
     addNewWine(wine);
     copiedWineStore.removeCopiedWine();
   };
-
-  useEffect(() => {
-    return () => {
-      copiedWineStore.removeCopiedWine();
-    };
-  }, []);
 
   const handleTypeChange = (event: SelectChangeEvent) => {
     setType(event.target.value as string);
@@ -129,8 +124,8 @@ export const AddWine = () => {
           label="Type"
           onChange={handleTypeChange}
         >
-          <MenuItem value={'red'}>Red</MenuItem>
-          <MenuItem value={'white'}>White</MenuItem>
+          <MenuItem value={'Red'}>Red</MenuItem>
+          <MenuItem value={'W hite'}>White</MenuItem>
         </Select>
         <TextField
           id="grapes"
@@ -181,4 +176,4 @@ export const AddWine = () => {
       </FormControl>
     </Container>
   );
-};
+});

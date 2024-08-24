@@ -14,7 +14,7 @@ export default function TopAppBar() {
             component="div"
             sx={{ flexGrow: 1, zIndex: 100 }}
           >
-            Trüebli Tipp
+            Trübli Tipp
           </Typography>
           <Avatar alt="François Allemand" />
         </Toolbar>
