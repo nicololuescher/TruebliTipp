@@ -21,24 +21,36 @@ export function Navigation() {
             setValue(newValue);
           }}
         >
-          <Link to="/">
-            <BottomNavigationAction label="Inventory" icon={<WineBarIcon />} />
-          </Link>
-          <Link to="/pairing">
-            <BottomNavigationAction label="Pairing" icon={<SearchIcon />} />
-          </Link>
-          <Link to="/sommelier">
-            <BottomNavigationAction label="Sommelier" icon={<Restaurant />} />
-          </Link>
-          <Link to="/community">
-            <BottomNavigationAction label="Community" icon={<PublicIcon />} />
-          </Link>
-          <Link to="/events">
-            <BottomNavigationAction
-              label="Events"
-              icon={<CalendarMonthOutlined />}
-            />
-          </Link>
+          <BottomNavigationAction
+            label="Inventory"
+            icon={<WineBarIcon />}
+            component={Link}
+            to="/"
+          />
+          <BottomNavigationAction
+            label="Pairing"
+            icon={<SearchIcon />}
+            component={Link}
+            to="/pairing"
+          />
+          <BottomNavigationAction
+            label="Sommelier"
+            icon={<Restaurant />}
+            component={Link}
+            to="/sommelier"
+          />
+          <BottomNavigationAction
+            label="Community"
+            icon={<PublicIcon />}
+            component={Link}
+            to="/community"
+          />
+          <BottomNavigationAction
+            label="Events"
+            icon={<CalendarMonthOutlined />}
+            component={Link}
+            to="/events"
+          />
         </BottomNavigation>
       </Box>
     </>

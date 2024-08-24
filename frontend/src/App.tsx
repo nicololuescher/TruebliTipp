@@ -23,14 +23,13 @@ const App: React.FC = () => {
 
       <Router>
         <Routes>
-          <Route path="/" element={<Navigation />}>
-            <Route index element={<Inventory />} />
-            <Route path="/pairing" element={<Pairing />} />
-            <Route path="/sommelier" element={<Sommelier />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/events" element={<Events />} />
-          </Route>
+          <Route index element={<Inventory />} />
+          <Route path="/pairing" element={<Pairing />} />
+          <Route path="/sommelier" element={<Sommelier />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/events" element={<Events />} />
         </Routes>
+        <Navigation />
       </Router>
     </ThemeProvider>
   );
