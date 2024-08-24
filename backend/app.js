@@ -5,6 +5,7 @@ const getInfoFromLabel = require('./routes/getInfoFromLabel');
 const getPairingsForFood = require('./routes/getPairingsForFood');
 const getPairingsForWine = require('./routes/getPairingsForWine');
 const getWines = require('./routes/getWines');
+const postWine = require('./routes/postWine');
 const postAnalyseMenu = require('./routes/postAnalyseMenu');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(getInfoFromLabel);
 app.use(getPairingsForFood);
 app.use(getPairingsForWine);
 app.use(getWines);
+app.use(postWine);
 app.use(postAnalyseMenu);
 
 app.listen(3000, () => {
