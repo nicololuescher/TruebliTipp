@@ -1,11 +1,27 @@
-import { wineStore } from '../../store/WineStore';
+import { Wine } from '../model/Wine';
 
-export const getAllWines = () => {
-  fetch('http://localhost:3000/getWines')
-    .then((response) => response.json())
-    .then((json) => {
-      wineStore.setWines(json);
-      console.log(json);
-    })
-    .catch((error) => console.error(error));
+export const getAllWines = (): Promise<Response> => {
+  return fetch('http://localhost:3000/getWines', {
+    method: 'GET',
+  });
+};
+
+export const getInfoFromLabel = (image: string): Promise<Response> => {
+  return fetch('http://localhost:3000/getInfoFromLabel', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ image: image }),
+  });
+};
+
+export const addNewWine = (wine: Wine): Promise<Response> => {
+  return fetch('http://localhost:3000/postWine', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ wine }),
+  });
 };

@@ -1,5 +1,5 @@
 export interface Wine {
-  id: number;
+  id?: number;
   name: string;
   year: number;
   type: 'Red' | 'White';
@@ -7,8 +7,8 @@ export interface Wine {
   country: string;
   region: string;
   description: string;
-  tags: string[];
-  used: boolean;
-  feedback: number;
+  tags: string;
+  used?: boolean;
+  feedback?: number;
   price: number;
 }

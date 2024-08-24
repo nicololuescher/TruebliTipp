@@ -13,9 +13,8 @@ import TopAppBar from './components/TopAppBar';
 import { AddWine } from './components/AddWine';
 import { ScanWine } from './components/ScanWine';
 import { WineDetail } from './components/WineDetail';
-import { wineStore } from '../store/WineStore';
 import { getAllWines } from './api/api';
-import { Wine } from './model/Wine';
+import { PairingFoodSuggestion } from './components/PairingFoodSuggestion';
 
 const darkTheme = createTheme({
   palette: {
@@ -24,11 +23,9 @@ const darkTheme = createTheme({
 });
 
 const App: React.FC = () => {
-  const wines: Wine[] = wineStore.wines;
-
   React.useEffect(() => {
     getAllWines();
-  }, [wines]);
+  }, []);
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -44,6 +41,10 @@ const App: React.FC = () => {
           <Route path="/addWine" element={<AddWine />} />
           <Route path="/scanWine" element={<ScanWine />} />
           <Route path="/wine/:id" element={<WineDetail />} />
+          <Route
+            path="/wineSuggestFood/:id"
+            element={<PairingFoodSuggestion />}
+          />
         </Routes>
         <Navigation />
       </Router>

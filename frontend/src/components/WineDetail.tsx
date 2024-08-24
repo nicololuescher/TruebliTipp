@@ -27,7 +27,9 @@ export const WineDetail = () => {
   }
 
   const drink = () => {
-    console.log('drink ', wine.id);
+    if (wine.id) {
+      wineStore.removeWine(wine.id);
+    }
   };
 
   return (

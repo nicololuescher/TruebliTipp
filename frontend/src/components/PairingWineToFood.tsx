@@ -7,19 +7,18 @@ import {
   Box,
 } from '@mui/material';
 import WineBarIcon from '@mui/icons-material/WineBar';
-import Add from '@mui/icons-material/Add';
 import { Wine } from '../model/Wine';
-import Fab from '@mui/material/Fab';
 import { useNavigate } from 'react-router-dom';
-import { wineStore } from '../../store/WineStore';
-import { getAllWines } from '../api/api';
-import React from 'react';
-import { observer } from 'mobx-react';
 
-export const Inventory = observer(() => {
+
+export const PairingWineToFood = () => {    
   const navigate = useNavigate();
 
-  /*  const wines: Wine[] = [
+  function search(e) {
+
+  }
+  
+  const wines: Wine[] = [
     {
       id: 1,
       name: 'Cabernet Sauvignon',
@@ -31,7 +30,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -45,7 +44,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -59,7 +58,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -73,7 +72,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -87,7 +86,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -101,7 +100,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -115,7 +114,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -129,7 +128,7 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
     {
@@ -143,49 +142,13 @@ export const Inventory = observer(() => {
       feedback: 5,
       grapes: 'idk',
       price: 12.5,
-      tags: ['nice'],
+      tags: 'nice',
       type: 'Red',
     },
-  ]; */
-  React.useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await getAllWines();
-
-        if (!response.ok) {
-          console.log('Error getting wines');
-          return;
-        }
-        const data: Wine[] = await response.json();
-
-        wineStore.setWines(data);
-      } catch (error) {
-        console.log('Error getting wines ', error);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  if (!wineStore.wines.length) {
-    return (
-      <>
-        <Typography align="center" variant="h4">
-          No wines added yet
-        </Typography>
-        <Fab
-          color="primary"
-          aria-label="add"
-          sx={{ position: 'fixed', right: '20px', bottom: '70px' }}
-          onClick={() => navigate('/addWine')}
-        >
-          <Add />
-        </Fab>
-      </>
-    );
-  }
+  ];
 
   return (
+      <div>
     <Container
       maxWidth="sm"
       sx={{
@@ -195,21 +158,13 @@ export const Inventory = observer(() => {
         paddingBottom: '60px',
       }}
     >
-      <Fab
-        color="primary"
-        aria-label="add"
-        sx={{ position: 'fixed', right: '20px', bottom: '70px' }}
-        onClick={() => navigate('/addWine')}
-      >
-        <Add />
-      </Fab>
       <Grid container spacing={2}>
-        {wineStore.wines.map((wine, index) => (
+        {wines.map((wine, index) => (
           <Grid
             item
             xs={12}
             key={index}
-            onClick={() => navigate(`/wine/${wine.id}`)}
+            onClick={() => navigate(`/wineSuggestFood/${wine.id}`)}
           >
             <Card>
               <CardContent>
@@ -237,5 +192,12 @@ export const Inventory = observer(() => {
         ))}
       </Grid>
     </Container>
-  );
-});
+
+
+      </div>
+  
+    )
+  }
+  
+
+  
