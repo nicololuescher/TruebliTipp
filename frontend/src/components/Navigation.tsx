@@ -13,7 +13,7 @@ export function Navigation() {
 
   return (
     <>
-      <Box position="absolute" bottom="0px">
+      <Box position="fixed" bottom="0px">
         <BottomNavigation
           showLabels
           value={value}
