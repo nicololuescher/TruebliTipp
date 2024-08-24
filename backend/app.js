@@ -7,6 +7,7 @@ const getPairingsForWine = require('./routes/getPairingsForWine');
 const getWines = require('./routes/getWines');
 const postWine = require('./routes/postWine');
 const postAnalyseMenu = require('./routes/postAnalyseMenu');
+const getSommelier = require('./routes/getSommelier');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(getPairingsForWine);
 app.use(getWines);
 app.use(postWine);
 app.use(postAnalyseMenu);
+app.use(getSommelier);
 
 app.listen(3000, () => {
   console.log('Server started on http://localhost:3000');
