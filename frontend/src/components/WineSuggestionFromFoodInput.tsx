@@ -1,3 +1,4 @@
+//Component is built and displayed in 
 import { Grid, Card, CardContent, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { wineStore } from '../../store/WineStore';
@@ -14,6 +15,7 @@ export const CreateFoodSuggestion = observer((props: IProps) => {
   {
     const navigate = useNavigate();
 
+    //saveguard if object is not yet initialized
     if (Object.keys(props.wineRanking).length === 0) {
       return <div></div>;
     }

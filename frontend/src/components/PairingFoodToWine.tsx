@@ -1,3 +1,5 @@
+//Component for entering a meal or used ingredients, which are then used to display a recommended Wine
+//Has modes to either search the personal inventory or to take a picture of a restaurants wine card to use as a "temporary" inventory
 import SearchIcon from '@mui/icons-material/Search';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
@@ -14,12 +16,14 @@ import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
+//Recursive Datastructre to encode the tree display
 interface FoodType {
   name: string;
   childNode?: FoodType[] | null;
 }
 
 export const PairingFoodToWine = observer(() => {
+  //Just static in frontend for now, can be moved to backend in a later iteration
   const foodType: FoodType[] = [
     {
       name: 'Meat',
@@ -137,6 +141,8 @@ export const PairingFoodToWine = observer(() => {
     setSelectedMeal(event.target.value);
   };
 
+  //Prioritize the entered meal and only use ingredients if none are entered.
+  //This may need some redesigning and UX studies
   function search() {
     if (selectedMeal != '') {
       getSuggestion(selectedMeal);
@@ -208,7 +214,7 @@ export const PairingFoodToWine = observer(() => {
           <p>-- Or --</p>
         </Box>
         <Box sx={{ minHeight: 352, minWidth: 290 }}>
-          <p>Zutaten:</p>
+          <p>Ingredients:</p>
 
           <SimpleTreeView
             multiSelect
@@ -237,6 +243,7 @@ export const PairingFoodToWine = observer(() => {
   );
 });
 
+//Creats a node in the tree view, can have 0->n child nodes
 const FoodItem = (ft: FoodType) => {
   if (ft.childNode == null) {
     return <TreeItem itemId={ft.name} label={ft.name} />;

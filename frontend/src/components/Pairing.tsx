@@ -1,3 +1,5 @@
+//Container view for the pairing functionalities
+//Either displays the component for finding a pair from food->wine or wine->food depending on the selected mode
 import { Box, Container, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';

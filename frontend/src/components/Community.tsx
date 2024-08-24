@@ -1,7 +1,10 @@
+//List that displays friends/follows and some notable stats
+//Achievements gained can be displayed for others to see
 import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import { Friend } from "../model/Friend";
 
 export const Community = () => {
+  //Mock data, can be moved to backend in a later iteration
   const friends: Friend[] = [
     {
       name: "Alice",

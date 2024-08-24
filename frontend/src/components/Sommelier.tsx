@@ -1,3 +1,5 @@
+//Virtual assistant which asks you questions about your mood and reccomends a fitting wine
+//Interaction with the user is in the form of a short questionaire
 import { Box, Card, CardContent, Container, Typography } from '@mui/material';
 import React from 'react';
 import { getSommelier } from '../api/api';

@@ -1,3 +1,6 @@
+//Allows taking of multiple pictures so a wine card with multiple pages can be scanned
+//The scanned pages are interpreted by Image to Text, with which a temporary inventory is created through LLM
+//If scanning is successful, wines are suggested for the entered meal
 import { Box, CircularProgress, Container, Fab } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';

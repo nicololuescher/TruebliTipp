@@ -1,3 +1,5 @@
+//Take a picture of a wine label, after which image to text and LLM try to infer as much information as possible
+//This is then entered into the form, which can be verified and edited by the user
 import { Box, CircularProgress, Container, Fab } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';

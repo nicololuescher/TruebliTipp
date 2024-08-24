@@ -1,3 +1,5 @@
+//Personal inventory of the users wines and their detail.
+//New Wines can either be entered by hand or Information can be preentered by LLM through taking a picture
 import {
   Container,
   Typography,

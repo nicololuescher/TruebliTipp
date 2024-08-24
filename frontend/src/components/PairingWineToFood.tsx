@@ -1,3 +1,4 @@
+//Component for displaying a users wine collection, which can be selected for fitting food recommendations
 import {
   Container,
   Typography,

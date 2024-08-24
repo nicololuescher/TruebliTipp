@@ -8,3 +8,13 @@ Members:
 - David Hänni
 - Adrian Aeschlimann
 - Nicolo Lüscher
+
+Stack:
+- MUI
+- React
+- ExpressJS
+- PostgresSQL
+- Google Gemini API
+- Docker
+
+Created at Bärnhäckt 2024
