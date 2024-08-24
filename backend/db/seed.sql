@@ -15,7 +15,7 @@ CREATE TABLE wines (
     country VARCHAR(100),
     region VARCHAR(100),
     description TEXT,
-    tags INTEGER,
+    tags VARCHAR(100),
     price FLOAT,
     rating INTEGER
 );
