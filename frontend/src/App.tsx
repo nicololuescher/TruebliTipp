@@ -13,6 +13,7 @@ import TopAppBar from './components/TopAppBar';
 import { AddWine } from './components/AddWine';
 import { ScanWine } from './components/ScanWine';
 import { WineDetail } from './components/WineDetail';
+import { PairingFoodSuggestion } from './components/PairingFoodSuggestion';
 
 const darkTheme = createTheme({
   palette: {
@@ -36,6 +37,7 @@ const App: React.FC = () => {
           <Route path="/addWine" element={<AddWine />} />
           <Route path="/scanWine" element={<ScanWine />} />
           <Route path="/wine/:id" element={<WineDetail />} />
+          <Route path="/wineSuggestFood/:id" element={<PairingFoodSuggestion />} />
         </Routes>
         <Navigation />
       </Router>

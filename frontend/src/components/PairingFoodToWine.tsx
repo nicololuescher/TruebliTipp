@@ -12,78 +12,78 @@ interface FoodType {
 export const PairingFoodToWine = () => {
     const foodType: FoodType[] = [
       {
-        name: 'Fleisch',
+        name: 'Meet',
         childNode: [
           {
-            name: 'Schwein',
+            name: 'Pork',
             childNode: null
           },
           {
-            name: 'Rind',
+            name: 'Beef',
             childNode: [
               {
-                name: 'Kalb',
+                name: 'Veal',
                 childNode: null
               }
             ]
           },
           {
-            name: 'Huhn',
+            name: 'Chicken',
             childNode: null
           }
         ]
       },
       {
-        name: 'Fisch',
+        name: 'Fish',
         childNode: [
           {
-            name: 'Lachs',
+            name: 'Salmon',
             childNode: null
           },
           {
-            name: 'Forelle',
+            name: 'Mackrel',
             childNode: null
           },
           {
-            name: 'Sardine',
+            name: 'Sardines',
             childNode: null
           }
         ]
       },
       {
-        name: 'Gemüse',
+        name: 'Vegetables',
         childNode: [
           {
-            name: 'Eisbergsalat',
+            name: 'Lettuce',
             childNode: null
           },
           {
-            name: 'Karrote',
+            name: 'Carrots',
             childNode: null
           },
           {
-            name: 'Mais',
+            name: 'Corn',
             childNode: null
           },
           {
-            name: 'Tomate',
+            name: 'Tomatos',
             childNode: null
           }
         ]
       },
       {
-        name: 'Früchte',
+        name: 'Fruits',
         childNode: [
           {
-            name: 'Apfel',
+            name: 'Apples',
             childNode: null
           },
           {
-            name: 'Birne',
+            name: 'Pears',
             childNode: null
           },
           {
-            name: 'Erbeere',
+            name: 'Strawberries',
             childNode: null
           },
           {
@@ -109,7 +109,7 @@ export const PairingFoodToWine = () => {
         getRecommendation(selectedMeal)
       }
       else {
-        getRecommendation("Mein Gericht besteht aus: ${selectedIngredients.toString()}")
+        getRecommendation("A meal consisting of: ${selectedIngredients.toString()}")
       }
     }
   
@@ -123,7 +123,7 @@ export const PairingFoodToWine = () => {
   
             justifyContent="center"
           >
-            <TextField id="outlined-basic" label="Gericht" variant="outlined" onChange={handleMealChanged} />
+            <TextField id="outlined-basic" label="Meal" variant="outlined" onChange={handleMealChanged} />
           </Box>
   
           <Box

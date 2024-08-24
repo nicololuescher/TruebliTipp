@@ -1,8 +1,9 @@
-import { Box, Button, Container, Grid, IconButton, TextField } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Switch, { SwitchProps } from '@mui/material/Switch';
+import Switch from '@mui/material/Switch';
 import { PairingFoodToWine } from './PairingFoodToWine';
 import { useState } from 'react';
+import { PairingWineToFood } from './PairingWineToFood';
 
 export const Pairing = () => {
   const [isFindWineMode, setFindWineMode] = useState(Boolean);
@@ -32,7 +33,7 @@ export const Pairing = () => {
         </Grid>
       </Grid>
 
-      {isFindWineMode ? <p>text</p> : <PairingFoodToWine/>}
+      {isFindWineMode ? <PairingWineToFood/> : <PairingFoodToWine/>}
 
 
     </Container>
