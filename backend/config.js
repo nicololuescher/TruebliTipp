@@ -93,6 +93,38 @@ var config = {
             output_type: "json",
             allow_inference: true,
             inference_instructions: "Assume missing fields if you have a high confidence"
+        },
+        postAnalyseMenu: {
+            instruction: "analyse the text from a menu and provide a list of the wines that are on the menu",
+            input_format: {
+                menu: "<menu text>"
+            },
+            expected_output_format: [
+                {
+                    name: "<name>",
+                    year: "<year>",
+                    grapes: "<grapes>",
+                    country: "<country>",
+                    region: "<region>",
+                    description: "<description>",
+                    tags: ["tag1", "tag2", "tag3", "..."],
+                    type: "<red|white>"
+                },
+                {
+                    id: "<id>",
+                    name: "<name>",
+                    year: "<year>",
+                    grapes: "<grapes>",
+                    country: "<country>",
+                    region: "<region>",
+                    description: "<description>",
+                    tags: ["tag1", "tag2", "tag3", "..."],
+                    type: "<red|white>"
+                }
+            ],
+            output_type: "json",
+            allow_inference: true,
+            inference_instructions: "Only include wines that are on the menu, but try to include as much information as possible"
         }
     }
 }
