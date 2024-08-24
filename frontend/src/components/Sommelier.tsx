@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, Container, Typography } from '@mui/material';
 import React from 'react';
+import { Divider } from '@mui/material';
 
 export const Sommelier = () => {
   const questions = [
@@ -15,10 +16,11 @@ export const Sommelier = () => {
   const [index, setIndex] = React.useState<number>(0);
   return (
     <Container
-      maxWidth="sm"
       sx={{
+        height: '50dvh',
         maxHeight: '100dvh',
         overflow: 'auto',
+        width: '100%',
       }}
     >
       <Card>
@@ -30,7 +32,7 @@ export const Sommelier = () => {
           >
             <Box display="flex" alignItems="center">
               <Box>
-                <Typography variant="h6">
+                <Typography variant="h4">
                   {questions[index].question}
                 </Typography>
               </Box>
@@ -38,6 +40,26 @@ export const Sommelier = () => {
           </Box>
         </CardContent>
       </Card>
+      <Divider sx={{ margin: '20px 0px' }} />
+      <Container>
+        {questions[index].answers.map((answer) => (
+          <Card onClick={() => setIndex(index + 1)} sx={{ margin: '5px 0px' }}>
+            <CardContent>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Box display="flex" alignItems="center">
+                  <Box>
+                    <Typography variant="h6">{answer}</Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        ))}
+      </Container>
     </Container>
   );
 };

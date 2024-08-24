@@ -1,21 +1,8 @@
-import {
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  Box,
-} from '@mui/material';
-import WineBarIcon from '@mui/icons-material/WineBar';
-import Add from '@mui/icons-material/Add';
-import { Wine } from '../model/Wine';
-import Fab from '@mui/material/Fab';
-import { useNavigate } from 'react-router-dom';
+import { Wine } from '../src/model/Wine';
+import { makeAutoObservable } from 'mobx';
 
-export const Inventory = () => {
-  const navigate = useNavigate();
-
-  const wines: Wine[] = [
+class WineStore {
+  wines: Wine[] = [
     {
       id: 1,
       name: 'Cabernet Sauvignon',
@@ -143,57 +130,26 @@ export const Inventory = () => {
       type: 'Red',
     },
   ];
-  return (
-    <Container
-      maxWidth="sm"
-      sx={{
-        maxHeight: '100dvh',
-        overflow: 'auto',
-        paddingTop: '60px',
-        paddingBottom: '60px',
-      }}
-    >
-      <Fab
-        color="primary"
-        aria-label="add"
-        sx={{ position: 'fixed', right: '20px', bottom: '70px' }}
-        onClick={() => navigate('/addWine')}
-      >
-        <Add />
-      </Fab>
-      <Grid container spacing={2}>
-        {wines.map((wine, index) => (
-          <Grid
-            item
-            xs={12}
-            key={index}
-            onClick={() => navigate(`/wine/${wine.id}`)}
-          >
-            <Card>
-              <CardContent>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Box display="flex" alignItems="center">
-                    <WineBarIcon sx={{ marginRight: 2 }} />
-                    <Box>
-                      <Typography variant="h6">{wine.name}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Year: {wine.year}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Price: {wine.price} CHF
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  );
-};
+
+  constructor() {
+    makeAutoObservable(this); // Makes the store observable and actions automatic
+  }
+
+  addWine(wine: Wine) {
+    this.wines.push(wine);
+  }
+
+  removeWine(id: number) {
+    this.wines = this.wines.filter((wine) => wine.id !== id);
+  }
+
+  getWineById(id: number) {
+    return this.wines.find((wine) => wine.id === id);
+  }
+
+  get totalWines() {
+    return this.wines.length;
+  }
+}
+
+export const wineStore = new WineStore();
