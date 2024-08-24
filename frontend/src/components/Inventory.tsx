@@ -11,11 +11,12 @@ import Add from '@mui/icons-material/Add';
 import { Wine } from '../model/Wine';
 import Fab from '@mui/material/Fab';
 import { useNavigate } from 'react-router-dom';
+import { wineStore } from '../../store/WineStore';
 
 export const Inventory = () => {
   const navigate = useNavigate();
 
-  const wines: Wine[] = [
+  /*  const wines: Wine[] = [
     {
       id: 1,
       name: 'Cabernet Sauvignon',
@@ -142,7 +143,27 @@ export const Inventory = () => {
       tags: ['nice'],
       type: 'Red',
     },
-  ];
+  ]; */
+  const wines: Wine[] = wineStore.allWines;
+
+  if (!wines.length) {
+    return (
+      <>
+        <Typography align="center" variant="h4">
+          No wines added yet
+        </Typography>
+        <Fab
+          color="primary"
+          aria-label="add"
+          sx={{ position: 'fixed', right: '20px', bottom: '70px' }}
+          onClick={() => navigate('/addWine')}
+        >
+          <Add />
+        </Fab>
+      </>
+    );
+  }
+
   return (
     <Container
       maxWidth="sm"

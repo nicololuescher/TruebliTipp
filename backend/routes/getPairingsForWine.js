@@ -5,7 +5,7 @@ const config = require('../config');
 
 router.get('/getPairingsForWine', (req, res) => {
     makeGeminiRequest(config.gemini.getPairingsForWine, JSON.stringify(req.body)).then((result) => {
-        res.send(result);
+        res.send(result.replace(", ", ",").replace(" ", "_"));
     });
 });
 
