@@ -8,3 +8,22 @@ services:
       - .env
     volumes:
       - ./db/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    networks:
+      - backend
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
