@@ -7,12 +7,12 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 export const ScanWine: React.FC = () => {
   const webcamRef = useRef<Webcam>(null);
-  const [images, setImages] = useState<string[]>([]);
+  const [image, setImage] = useState<string>('');
 
   const capture = () => {
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
-      setImages([...images, imageSrc]);
+      setImage(imageSrc);
     }
   };
 
@@ -63,23 +63,19 @@ export const ScanWine: React.FC = () => {
           <Fab onClick={capture}>
             <RadioButtonCheckedIcon />
           </Fab>
-          <Fab onClick={sendImages} disabled={!images.length}>
+          <Fab onClick={sendImages} disabled={!image}>
             <AnalyticsIcon />
           </Fab>
-          <Fab onClick={() => setImages([])} disabled={!images.length}>
+          <Fab onClick={() => setImage('')} disabled={!image}>
             <RemoveCircleOutlineIcon />
           </Fab>
         </Container>
       </Container>
 
-      {images && (
+      {image && (
         <div>
-          <h3>Captured Images:</h3>
-          {images.map((image, i) => {
-            return (
-              <img src={image} key={i} alt={`image${i}`} width={'100px'} />
-            );
-          })}
+          <h3>Captured Image:</h3>
+          <img src={image} key="image" alt="image" width={'100px'} />
         </div>
       )}
     </Container>
