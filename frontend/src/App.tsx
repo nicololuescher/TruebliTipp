@@ -10,6 +10,9 @@ import { Sommelier } from './components/Sommelier';
 import { Community } from './components/Community';
 import { Events } from './components/Events';
 import TopAppBar from './components/TopAppBar';
+import { AddWine } from './components/AddWine';
+import { ScanWine } from './components/ScanWine';
+import { WineDetail } from './components/WineDetail';
 
 const darkTheme = createTheme({
   palette: {
@@ -30,6 +33,9 @@ const App: React.FC = () => {
           <Route path="/sommelier" element={<Sommelier />} />
           <Route path="/community" element={<Community />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/addWine" element={<AddWine />} />
+          <Route path="/scanWine" element={<ScanWine />} />
+          <Route path="/wine/:id" element={<WineDetail />} />
         </Routes>
         <Navigation />
       </Router>

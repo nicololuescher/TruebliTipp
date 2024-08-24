@@ -1,4 +1,5 @@
 export interface Wine {
+  id: number;
   name: string;
   year: number;
   type: 'Red' | 'White';

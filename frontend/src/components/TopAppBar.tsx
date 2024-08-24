@@ -12,8 +12,10 @@ export default function TopAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1 }}
-          ></Typography>
+            sx={{ flexGrow: 1, zIndex: 100 }}
+          >
+            Trüebli Tipp
+          </Typography>
           <Avatar alt="François Allemand" />
         </Toolbar>
       </AppBar>
