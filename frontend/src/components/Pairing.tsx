@@ -36,16 +36,16 @@ export const Pairing = () => {
 };
 
 const ToggleFoodWineMode = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
-  padding: 7,
+  width: 80,
+  height: 42,
+  padding: 10,
   '& .MuiSwitch-switchBase': {
     margin: 1,
     padding: 0,
     transform: 'translateX(6px)',
     '&.Mui-checked': {
       color: '#fff',
-      transform: 'translateX(22px)',
+      transform: 'translateX(33px)',
       '& .MuiSwitch-thumb:before': {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           '#fff'
@@ -59,8 +59,8 @@ const ToggleFoodWineMode = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-thumb': {
     backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-    width: 32,
-    height: 32,
+    width: 40,
+    height: 40,
     '&::before': {
       content: "''",
       position: 'absolute',

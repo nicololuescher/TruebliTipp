@@ -85,7 +85,7 @@ export const PairingWineToFood = observer(() => {
                     justifyContent="space-between"
                   >
                     <Box display="flex" alignItems="center">
-                      <WineBarIcon sx={{ marginRight: 2 }} />
+                    <WineBarIcon style={{color: wine.type}} sx={{ marginRight: 2 }} />
                       <Box>
                         <Typography variant="h6">{wine.name}</Typography>
                         <Typography variant="body2" color="textSecondary">

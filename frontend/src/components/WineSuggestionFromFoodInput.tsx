@@ -37,8 +37,8 @@ export const CreateFoodSuggestion = observer((props: IProps) => {
                   justifyContent="space-between"
                 >
                   <Box display="flex" alignItems="center">
-                    <WineBarIcon sx={{ marginRight: 2 }} />
-                    <Box>
+                  <WineBarIcon style={{color: wineStore.getWineById(parseInt(wineId))?.type}} sx={{ marginRight: 2 }} />
+                  <Box>
                       {props.useInventory ? (
                         <Typography variant="h6">
                           {wineStore.getWineById(parseInt(wineId))?.name}

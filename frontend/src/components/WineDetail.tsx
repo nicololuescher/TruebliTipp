@@ -62,7 +62,7 @@ export const WineDetail = () => {
               width: '100%',
               height: '200px', // Set the height you want for the image container
               backgroundImage:
-                wine.type === 'Red'
+                wine.type.toUpperCase() === 'Red'.toUpperCase()
                   ? `url(${redWineImage})`
                   : `url(${whiteWineImage})`, // Replace with your image URL
               backgroundSize: 'cover',
