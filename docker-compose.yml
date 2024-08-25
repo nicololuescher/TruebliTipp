@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: db
+    ports:
+      - 5432:5432
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/db/seed.sql:/docker-entrypoint-initdb.d/seed.sql # Seed data
+    networks:
+      - backend
+  node:
+    build:
+      context: backend/.
+      dockerfile: Dockerfile
+    container_name: node
+    ports:
+      - 3000:3000
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - postgres
+    networks:
+      - backend
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react
+    ports:
+      - 5173:80
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
