@@ -8,6 +8,7 @@ const getWines = require('./routes/getWines');
 const postWine = require('./routes/postWine');
 const postAnalyseMenu = require('./routes/postAnalyseMenu');
 const getSommelier = require('./routes/getSommelier');
+const deleteWine = require('./routes/deleteWine');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(getWines);
 app.use(postWine);
 app.use(postAnalyseMenu);
 app.use(getSommelier);
+app.use(deleteWine);
 
 app.listen(3000, () => {
   console.log('Server started on http://localhost:3000');
