@@ -10,12 +10,13 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { wineStore } from '../../store/WineStore';
 import { Wine } from '../model/Wine';
 
 import redWineImage from '../assets/redWine.jpg'; // Adjust the relative path
 import whiteWineImage from '../assets/whiteWine.jpg'; // Adjust the relative path
+import { removeWine } from '../api/api';
 
 export const WineDetail = () => {
   const { id } = useParams<{ id: string }>() as { id: string }; // Get the wine ID from the URL
@@ -29,6 +30,7 @@ export const WineDetail = () => {
   const drink = () => {
     if (wine.id) {
       wineStore.removeWine(wine.id);
+      removeWine(wine.id);
     }
   };
 

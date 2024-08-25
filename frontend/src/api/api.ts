@@ -67,3 +67,13 @@ export const analyseMenu = (images: string[]): Promise<Response> => {
     body: JSON.stringify({ images: [...images] }),
   });
 };
+
+export const removeWine = (id: number): Promise<Response> => {
+  return fetch('http://localhost:3000/deleteWine', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: id }),
+  });
+};
